@@ -357,9 +357,13 @@ if "df" in st.session_state:
                 )
                 st.markdown(f"[View commit on GitHub]({commit_url})")
                 st.markdown(
+                    "**Year-group tools:**  \n"
                     "🔗 [Y1 Beech](https://wallscourtfarm.github.io/staff-learning-tools/year1-beech/) · "
                     "[Y2 Willow](https://wallscourtfarm.github.io/staff-learning-tools/year2-willow/) · "
-                    "[Y3 Acer](https://wallscourtfarm.github.io/staff-learning-tools/year3-acer/)"
+                    "[Y3 Acer](https://wallscourtfarm.github.io/staff-learning-tools/year3-acer/) · "
+                    "[Y4 Maple](https://wallscourtfarm.github.io/staff-learning-tools/year4-maple/) · "
+                    "[Y5 Hazel](https://wallscourtfarm.github.io/staff-learning-tools/year5-hazel/) · "
+                    "[Y6 Elm](https://wallscourtfarm.github.io/staff-learning-tools/year6-elm/)"
                 )
             except Exception as e:
                 st.error(f"Publish failed: {e}")
