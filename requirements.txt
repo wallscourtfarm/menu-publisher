@@ -3,3 +3,4 @@ anthropic>=0.40
 requests>=2.31
 pandas>=2.2
 git+https://github.com/wallscourtfarm/wfa-shared.git
+
