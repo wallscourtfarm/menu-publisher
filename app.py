@@ -14,6 +14,9 @@ from datetime import date, timedelta, datetime
 import requests
 import pandas as pd
 
+from wfa_shared.api import get_anthropic_client, DEFAULT_MODEL
+from wfa_shared.streamlit_css import inject_wfa_css
+
 # ────────────────────────────────────────────────────────────────────────
 # CONFIG
 # ────────────────────────────────────────────────────────────────────────
@@ -28,6 +31,8 @@ st.set_page_config(
     page_icon="🍽️",
     layout="wide",
 )
+
+inject_wfa_css(buttons=True, download=True)
 
 # ────────────────────────────────────────────────────────────────────────
 # AUTH
@@ -52,9 +57,6 @@ if not check_password():
 # ────────────────────────────────────────────────────────────────────────
 # HELPERS
 # ────────────────────────────────────────────────────────────────────────
-def get_anthropic_client():
-    return anthropic.Anthropic(api_key=st.secrets["ANTHROPIC_API_KEY"])
-
 def extract_menu_from_pdf(pdf_bytes: bytes) -> dict:
     """Send PDF to Claude and ask for structured JSON of the menu."""
     client = get_anthropic_client()
@@ -102,7 +104,7 @@ Convert all dates to YYYY-MM-DD format. If the PDF shows "13/04/26" assume 2026.
 Verify all monday_dates fall on a Monday — if a date doesn't, flag it but include it anyway."""
 
     response = client.messages.create(
-        model="claude-sonnet-4-6",
+        model=DEFAULT_MODEL,
         max_tokens=4000,
         messages=[
             {
